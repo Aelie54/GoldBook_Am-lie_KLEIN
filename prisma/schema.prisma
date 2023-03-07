@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:amelie@localhost:3306/Livre_d_Or"
+}
+
+model User {
+  idUser     Int       @id @default(autoincrement())
+  pseudo     String    @unique @db.VarChar(20)
+  avatar     String    @default("null") @db.VarChar(200)
+  password   String    @db.VarChar(300)
+  role       Role      @default(USER)
+  nom        String    @db.VarChar(25)
+  prenom     String    @db.VarChar(25)
+  email      String    @unique @db.VarChar(50)
+  info_email String    @default("Non renseigné") @db.VarChar(75)
+
+  writtenComments Comment[]
+  likes Like [] 
+
+  @@unique([idUser, pseudo, avatar])
+}
+
+model Comment {
+  idComment     Int     @id @default(autoincrement())
+  title         String  @db.VarChar(75)
+  comment       String  @db.VarChar(505)
+
+  author     User    @relation(fields: [authorId, authorPseudo, authorAvatar], references: [idUser, pseudo, avatar], onDelete: Cascade)
+  authorId   Int
+  authorPseudo String
+  authorAvatar String
+
+  likes Like [] 
+
+  @@unique([idComment, title, authorPseudo, authorId, authorAvatar])
+}
+
+model Like {
+  idLikes         Int     @id @default(autoincrement())
+
+  Liker     User    @relation( fields: [LikerId, LikerPseudo, Likeravatar], references: [idUser, pseudo, avatar], onDelete: Cascade)
+  LikerId   Int
+  LikerPseudo String
+  Likeravatar String
+
+  Commented     Comment    @relation(fields: [commentId, commentTitle, commentAuthor, commentAuthorId, avatarAuthor], references: [idComment, title, authorPseudo,authorId, authorAvatar], onDelete: Cascade)
+  commentId   Int
+  commentTitle String
+  commentAuthor String
+  commentAuthorId Int
+  avatarAuthor String
+
+  @@unique([commentId, commentTitle, commentAuthor, commentAuthorId, LikerId, LikerPseudo])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
