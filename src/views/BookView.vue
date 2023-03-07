@@ -19,9 +19,9 @@
                 <li>Déconnexion</li>
               </div>
               <div>
-                <RouterLink to="/myprofil">
-                <li>Mon profil</li>
-                </RouterLink>
+                <!-- <RouterLink to="/myprofil"> -->
+                <li v-on:click="profilutilisateur(MyTokenStore.myid)" >Mon profil</li>
+                <!-- </RouterLink> -->
               </div>
               <div v-if="MyTokenStore.role == `ADMIN`">
                 <RouterLink to="/all_users">

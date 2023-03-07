@@ -1,7 +1,6 @@
 <template>
-    <h1 style="color:white;text-align:center;"> Mon Profil : <br></h1>
 
-    <div style="display:flex;align-content:center;justify-content:center;align-items:center;margin-bottom:60px">
+    <div style="display:flex;align-content:center;justify-content:center;align-items:center;margin-bottom:60px; margin-top:60px">
       <div style="display:flex;flex-direction:column;padding:30px;border: 1px dashed white;border-radius:5px; align-items:center;align-content:center">
         <div>
           <h2><span style="color:gold">{{Myuser.pseudo}}</span></h2><br>
@@ -36,8 +35,6 @@
         </div>
       </div>
     </div>
-
-    <h1 style="color:white;text-align:center;margin-bottom:40px"> Mes inscriptions au Livre d'Or : <br></h1>
 
      <h1 class="fondbeau" style=" font-size:90px;">Livre d'Or</h1>
       <div v-for="article in useListUserComments2.list" :key="article.idComment" >

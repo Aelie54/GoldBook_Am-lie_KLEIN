@@ -1,5 +1,5 @@
 <template>
-    <h1 style="color:white;text-align:center;"> Mon Profil : <br></h1>
+    <h1 style="color:white;text-align:center;"> Mon Profil !!!!! : <br></h1>
 
     <div style="display:flex;align-content:center;justify-content:center;align-items:center;margin-bottom:60px">
       <div style="display:flex;flex-direction:column;padding:30px;border: 1px dashed white;border-radius:5px; align-items:center;align-content:center">
