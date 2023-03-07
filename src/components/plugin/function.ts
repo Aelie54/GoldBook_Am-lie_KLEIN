@@ -2,16 +2,13 @@ import { useRouter } from "vue-router";
 import { useListComments } from "../../stores/comments";
 import { TokenStore } from "../../stores/token";
 import { useListLikes } from "../../stores/likes";
-import { useListIfilike } from "../../stores/ifilike";
 import { ModifyComment } from "../../stores/comment";
 import { usersStore } from "../../stores/users";
 import {localhost } from './localhost';
 const Mycomment2 = ModifyComment() ;
-// var router = useRouter();
 const MyTokenStore = TokenStore();
 var useListComments2 = useListComments();
 var useListLikes2 = useListLikes();
-var useListIfilike2 = useListIfilike();
 var UsersStore2 = usersStore();
 
 export async function actualisation_user() {
