@@ -1263,6 +1263,23 @@ try{
             // console.log (decoded);
             var idConnect = parseInt(decoded.id);
 
+
+
+            const Comments = await prisma.comment.findMany({
+                where: {
+                    authorId: idConnect,
+                }
+            })
+
+            console.log("Nombre de commentaires : " + Comments.length);
+
+            if ( Comments.length > 3 ) {
+                return response.status(403).json({
+                    error: "ERROR",
+                    message: "Vous avez déjà posté trois commentaires. Si vous voulez en poster un nouveau, veuillez en supprimer.",
+                });
+            }
+
             if (( !(thetitle) || !(thecomment) || !(idConnect) )) {
                 return response.status(403).json({
                     error: "ERROR",
