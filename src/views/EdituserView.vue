@@ -25,6 +25,7 @@
           <div style="width: 70%">{{Myuser.info_email}}<br><br></div>
         </div>
         <div><p>Role : <span style="color:gold">{{Myuser.role}}</span></p></div>
+         <button style="margin-top:20px: margin-bottom:10px" v-on:click="profilutilisateur(Myuser.id)">Voir Inscriptions</button>
       </div>
     </div>
 
@@ -316,6 +317,67 @@ async function delete_user() {
   Myuser.avatar = "";
 
   router.push("/all_users");
+}
+
+//pour rediriger faire profil avec inscriptions
+async function profilutilisateur(ID) {
+
+  let response = await fetch(`${localhost}/show_one_User/`+ID, {
+    method: "GET",
+    headers: {
+    "Authorization": MyTokenStore.token,
+    "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+    console.log("Failed", error)
+    });
+
+  if(response.error){
+    alert(response.message);
+    return
+  }
+
+  Myuser.id = response.idUser;
+  Myuser.nom = response.nom;
+  Myuser.prenom = response.prenom;
+  Myuser.email = response.email;
+  Myuser.info_email = response.info_email;
+  Myuser.role = response.role;
+  Myuser.pseudo = response.pseudo;
+  Myuser.avatar = response.avatar;
+  Myuser.role = response.role;
+
+  showcommentsforUserProfile(ID);
+
+  router.push(`/profile_user/`+ ID)
+}
+
+//en complement de la précédante fonction, voir ses commentaire aussi 
+async function showcommentsforUserProfile(ID) {
+    var objet = {
+        id_liker : "",
+        id_user : ID,
+    }
+    if (MyTokenStore.myid == ""){
+        MyTokenStore.myid = "0" 
+    }
+
+    objet.id_liker = MyTokenStore.myid;
+    let response =
+      await fetch(`${localhost}/show_comments_withID_IdUser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(objet)
+      })
+          .then((response) => response.json())
+          .catch((e) => {
+              console.warn("Failed", e)
+          });
+    useListUserComments2.list = response
 }
 
 </script>

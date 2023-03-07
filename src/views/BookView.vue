@@ -185,7 +185,6 @@ async function profilutilisateur(ID) {
   Myuser.avatar = response.avatar;
   Myuser.role = response.role;
 
-  console.log(Myuser.pseudo);
   showcommentsforUserProfile(ID);
 
   router.push(`/profile_user/`+ ID)
