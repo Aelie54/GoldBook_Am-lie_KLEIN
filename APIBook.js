@@ -1638,6 +1638,7 @@ try{
                 });
             }
 
+            //pour compter le nombre de likes pour chaque commentaires
             for(var i = 0; i < comments.length; i++){
                 comments[i].LikeCount = 0 ;
                     const likes = await prisma.like.findMany({
@@ -1653,7 +1654,7 @@ try{
             
             //si je suis connectée
             if(id_liker >0){
-                //je cherche un eventuel like de moi même pour chaque commentaire
+                //je créé également un indicateur pour savoir si l'utilisateur a aimé ou non chaque commentaire
                 for(var i = 0; i < comments.length; i++){
                     const like = await prisma.like.findMany({
                         where: {
