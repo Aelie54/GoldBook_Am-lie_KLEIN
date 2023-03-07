@@ -45,11 +45,11 @@ const router = createRouter({
       component: () => import("../views/UsersView.vue"),
     },
     
-        {
-          path: "/myprofil",
-          name: "profil",
-          component: () => import("../views/ProfilView.vue"),
-        },
+        // {
+        //   path: "/myprofil",
+        //   name: "profil",
+        //   component: () => import("../views/ProfilView.vue"),
+        // },
 
         {
           path: "/modifymyprofil",
