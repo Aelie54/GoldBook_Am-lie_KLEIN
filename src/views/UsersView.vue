@@ -45,7 +45,7 @@
       </div>
     <div class="flex_3">
       <div v-for="user in UsersStore2.list" :key="user.idUser" class="flex_4">
-        <div style="cursor:pointer" v-on:click="show_one_user(user.idUser)">               
+        <div style="cursor:pointer;border: gold 2px solid;border-radius:3px" v-on:click="show_one_user(user.idUser)">               
           <div class="case "> 
             <div>
               <p><span style="color:gold">{{user.pseudo}}</span></p>
@@ -197,7 +197,7 @@ async function show_one_user(ID) {
 
   .case{
     border: 1px dashed white ; border-radius:5px ; 
-    flex-wrap:wrap; margin:15px;
+    flex-wrap:wrap; margin:5px;
   }
 
   .avatar_user_admin{
@@ -221,7 +221,7 @@ async function show_one_user(ID) {
   }
 
   .flex_4{
-   display:flex; text-align:center; justify-content: center ; align-items : center
+   display:flex; text-align:center; justify-content: center ; align-items : center ; margin:0
   }
 
     a:hover {

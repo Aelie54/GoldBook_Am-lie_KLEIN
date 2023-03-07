@@ -33,6 +33,15 @@
           <button><RouterLink to="/modifymyprofil">
           <p style="color:black"> Modifier mon profil</p></RouterLink></button>
         </div>
+ 
+        <div v-if="MyTokenStore.role== 'ADMIN'">
+          <button  v-on:click="show_one_user(userId)">
+          <p style="color:black">Espace Admin</p></button>
+        </div>
+
+
+        <!-- v-on:click="show_one_user(user.idUser)" -->
+
       </div>
     </div>
 
@@ -215,6 +224,39 @@ async function showcommentsforUserProfile() {
               console.warn("Failed", e)
           });
     useListUserComments2.list = response
+}
+
+
+async function show_one_user(ID) {
+
+  let response = await fetch(`${localhost}/show_one_User/`+ID, {
+    method: "GET",
+    headers: {
+    "Authorization": MyTokenStore.token,
+    "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+    console.log("Failed", error)
+    });
+
+  if(response.error){
+    alert(response.message);
+    return
+  }
+
+  Myuser.id = response.idUser;
+  Myuser.nom = response.nom;
+  Myuser.prenom = response.prenom;
+  Myuser.email = response.email;
+  Myuser.info_email = response.info_email;
+  Myuser.role = response.role;
+  Myuser.pseudo = response.pseudo;
+  Myuser.avatar = response.avatar;
+  Myuser.role = response.role;
+
+  router.push(`/user/`+ ID)
 }
 
 </script>
