@@ -31,16 +31,13 @@
         </div>
         <div v-if="Myuser.id == MyTokenStore.myid">
           <button><RouterLink to="/modifymyprofil">
-          <p style="color:black"> Modifier mon profil</p></RouterLink></button>
+          <p style="color:black"> Modifier</p></RouterLink></button>
         </div>
  
         <div v-if="MyTokenStore.role== 'ADMIN'">
           <button  v-on:click="show_one_user(userId)">
-          <p style="color:black">Espace Admin</p></button>
+          <p style="color:black">Admin</p></button>
         </div>
-
-
-        <!-- v-on:click="show_one_user(user.idUser)" -->
 
       </div>
     </div>
