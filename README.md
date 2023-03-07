@@ -1,6 +1,6 @@
-#  SwanLake
+#  Gold Book
 
-This template should help get you started developing with Vue 3 in Vite.
+It's for a project, to make on my website, my colleagues, friends, tutors will be able to leave a message with a personal space. A like system will also be included. Registration and login will be required. Possibility also to upload an avatar. It will be put into production with my website: amelie-k.fr.
 
 ## Recommended IDE Setup
 
