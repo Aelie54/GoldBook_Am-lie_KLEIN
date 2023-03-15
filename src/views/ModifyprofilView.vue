@@ -205,7 +205,7 @@ async function modify() {
   MyTokenStore.email = user._value.new_email;
   MyTokenStore.info_email = user._value.new_info_email;
 
-  router.push("/myprofil");
+  router.push("/modifymyprofil");
 }
 
 </script>
